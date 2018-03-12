@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Title event</title>
     <script>
     // check for notifications support
     // you can omit the 'window' keyword
@@ -11,9 +11,23 @@
     }
     else {
         console.log("Notifications are not supported for this Browser/OS version yet.");
-    }</script>
+    }
+    document.querySelector('#show_button').addEventListener('click', function() {
+        if (window.webkitNotifications.checkPermission() == 0) { // 0 is PERMISSION_ALLOWED
+            // function defined in step 2
+            window.webkitNotifications.createNotification(
+                'icon.png', 'Notification Title', 'Notification content...');
+        } else {
+            window.webkitNotifications.requestPermission();
+        }
+    }, false);
+    </script>
 </head>
 <body>
+<ol>
+    <li>Check feature</li>
+    <li>Request perm</li>
+</ol>
 
 </body>
 </html>
