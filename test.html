@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Notify.js demo</title>
+<meta name="description" content="" />
+<meta name="author" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<style>
+    button {
+            width: 100px;
+            height: 44px;
+    }
+</style>
+
+</head>
+<body>
+  <h1>Notify.js demo</h1>
+  <p>Notify.js is a simple wrapper for the Web Notification API. The GitHub repo is <a href="https://github.com/alexgibson/notify.js">here</a>.</p>
+  <p>Click the button below to fire up a notification. Currently supported in Chrome, Safari, Firefox and Firefox OS.</p>
+  <button id="my-button">Notify Me!</button>
+
+  <!-- JavaScript assets -->
+  
+  <script>
+  function storageAvailable(type) {
+    var storage;
+    try {
+        storage = window[type];
+        var x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch(e) {
+        return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === 'QuotaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            (storage && storage.length !== 0);
+    }
+}
+
+
+if (storageAvailable('sessionStorage')) {
+  alert('Yippee! We can use localStorage awesomeness');
+}
+else {
+  alert('Too bad, no localStorage for us');
+}
+  </script>
+</body>
+</html>
