@@ -68,7 +68,7 @@ if(!sessionStorage.sessionUuidTab) {
 window.addEventListener('beforeunload', function() {
     document.cookie = 'sessionUuidTab=' + storage.getItem('sessionUuidTab')+'; max-age=360000; path=/;';
 });
-alert(document.cookie);
+alert(document.cookie.sessionUuidTab);
 
   </script>
 </body>
